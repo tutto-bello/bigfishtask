@@ -20,6 +20,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#FFDFBA",
+        secondary: "#AB9A88",
         backhover: "#014593"
       },
       width: {

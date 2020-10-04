@@ -17,3 +17,7 @@ h6 {
   font-family: "Open sans", sans-serif;
   font-style: normal;
 }
+
+.borderb {
+  border-bottom: 1px solid #dfe3e8;
+}
