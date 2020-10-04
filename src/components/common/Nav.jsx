@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { debounce } from "lodash";
 import PropTypes from "prop-types";
 import clsx from "clsx";
+import NavHd from "./NavHd";
 
 const HamburgerMenu = ({ show }) => {
   return (
@@ -16,8 +18,8 @@ const HamburgerMenu = ({ show }) => {
     >
       {show ? (
         <>
-          <path d="M18 6L6 18" />
-          <path d="M6 6L18 18" />
+          <path d="M18 6L6 18" stroke="#014593" />
+          <path d="M6 6L18 18" stroke="#014593" />
         </>
       ) : (
         <>
@@ -30,54 +32,126 @@ const HamburgerMenu = ({ show }) => {
   );
 };
 
-const Header = () => {
+const Header = ({ background = false }) => {
   const [show, setShow] = useState(false);
+  const [hasBackground, setHasBackground] = useState(background);
 
-  const headerClass = clsx("fixed w-full z-10 bg-transparent top-0", {
-    "h-full": show
-  });
+  const toggleBackground = useCallback(() => {
+    if (!hasBackground && window.pageYOffset > 80) {
+      setHasBackground(true);
+    }
+  }, [hasBackground]);
 
-  const navClass = clsx("w-full h-full flex flex-col p-5 bg-white mt-6", {
-    hidden: !show
-  });
+  const headerClass = clsx(
+    `fixed w-full z-10 top-0 lg:hidden ${
+      hasBackground ? "bg-transparent" : ""
+    }`,
+    {
+      "h-full bg-white md:w-1/2": show
+    }
+  );
+
+  const navClass = clsx(
+    "w-full h-full flex flex-col p-5 bg-white mt-6 overflow-scroll",
+    {
+      hidden: !show
+    }
+  );
+
+  useEffect(() => {
+    toggleBackground();
+
+    window.addEventListener("scroll", debounce(toggleBackground), 50);
+  }, [hasBackground, toggleBackground]);
 
   return (
-    <header className={headerClass}>
-      <div className="flex flex-col h-full lg:flex-col-reverse pt-1">
-        <div className="flex-grow flex flex-col container lg:flex-row lg:items-center h-full">
-          <div className="w-full lg:w-1/3">
+    <div>
+      <header className={headerClass}>
+        <div className="flex-grow flex flex-col container h-full">
+          <div className="w-full">
             <div className="flex flex-row mt-3 justify-end">
               <button
                 type="button"
                 onClick={() => setShow(!show)}
-                className="w-5 ml-5 outline-none lg:hidden no-underline"
+                className="w-5 ml-5 outline-none"
               >
                 <HamburgerMenu show={show} />
               </button>
               <a className="mr-auto">
-                <img
-                  src="/icons/bp-logo.svg"
-                  width="180"
-                  alt="Budapest logo"
-                  className="ml-5"
-                />
+                {show ? (
+                  <img
+                    src="/icons/bplogob.svg"
+                    width="180"
+                    alt="Budapest logo"
+                    className="ml-5"
+                  />
+                ) : (
+                  <img
+                    src="/icons/bp-logo.svg"
+                    width="180"
+                    alt="Budapest logo"
+                    className="ml-5"
+                  />
+                )}
               </a>
               <a>
-                <img
-                  src="/icons/chat.svg"
-                  width="18"
-                  alt="Budapest logo"
-                  className="mt-3 mr-3"
-                />
+                {show ? (
+                  <img
+                    src="/icons/chatb.svg"
+                    width="18"
+                    alt="Budapest logo"
+                    className="mt-3 mr-3 lg:hidden"
+                  />
+                ) : (
+                  <img
+                    src="/icons/chat.svg"
+                    width="18"
+                    alt="Budapest logo"
+                    className="mt-3 mr-3 lg:hidden"
+                  />
+                )}
               </a>
               <a>
-                <img
-                  src="/icons/login.svg"
-                  width="18"
-                  alt="Budapest logo"
-                  className="mt-3 mr-5"
-                />
+                {show ? (
+                  <img
+                    src="/icons/loginb.svg"
+                    width="18"
+                    alt="Budapest logo"
+                    className="mt-3 mr-5 lg:hidden"
+                  />
+                ) : (
+                  <img
+                    src="/icons/login.svg"
+                    width="18"
+                    alt="Budapest logo"
+                    className="mt-3 mr-3 lg:hidden"
+                  />
+                )}
               </a>
+              {show ? (
+                <p>{""}</p>
+              ) : (
+                <div className="justify-end hidden lg:flex lg:justify-end mr-5">
+                  <a className="text-blue-800 bg-white rounded-full border border-third pt-1 pb-1 pl-3 pr-3 mr-1 hover:bg-primary">
+                    Chat{" "}
+                    <img
+                      src="/icons/chatb.svg"
+                      width="18"
+                      alt="Pin"
+                      className="inline ml-4"
+                    />
+                  </a>
+                  <a className="text-blue-800 bg-white rounded-full border border-third pt-1 pb-1 pl-3 pr-3 ml-1 hover:bg-primary ">
+                    Login{" "}
+                    <img
+                      src="/icons/loginb.svg"
+                      width="18"
+                      alt="Pin"
+                      className="inline ml-4 hover:fill-white"
+                    />
+                  </a>
+                </div>
+              )}
             </div>
           </div>
           <nav className={navClass}>
@@ -136,7 +210,6 @@ const Header = () => {
                 </div>
               </div>
             </div>
-
             <div className="text-center mt-10 pb-10 borderb">
               <p className="text-secondary">
                 <img
@@ -149,36 +222,47 @@ const Header = () => {
               </p>
             </div>
             <div className="text-center mt-10 pb-10">
-              <a className="text-blue-800 rounded-full border-2 p-5 mr-1">
+              <a className="text-blue-800 rounded-full border border-third p-4 mr-1 hover:bg-primary">
+                Chat{" "}
                 <img
                   src="/icons/chatb.svg"
                   width="18"
                   alt="Pin"
-                  className="inline ml-2"
-                />{" "}
-                Chat
+                  className="inline ml-4"
+                />
               </a>
-              <a className="text-blue-800 rounded-full border-2 p-5 ml-1">
+              <a className="text-blue-800 rounded-full border border-third p-4 ml-1 hover:bg-primary ">
+                Login{" "}
                 <img
                   src="/icons/loginb.svg"
                   width="18"
                   alt="Pin"
-                  className="inline ml-2"
-                />{" "}
-                Login
+                  className="inline ml-4 hover:fill-white"
+                />
               </a>
             </div>
-            <a
-              href="#about"
-              activeClassName="text-white"
-              className="text-3xl md:text-base block mt-4 lg:mt-0 lg:inline-block text-primary hover:text-white mr-5"
-            >
-              ABOUT
-            </a>
+            <div class="flex items-center mt-10">
+              <img
+                class="w-10 h-10 rounded-full mr-4"
+                src="/icons/user.png"
+                alt="User"
+              />
+              <div class="text-sm">
+                <p class="text-third text-xs">Logged in as</p>
+                <p class="text-third text-lg">Barbara Palvin</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap text-secondary mt-5">
+              <div className="w-1/2">
+                <p className="mt-3">Dashboard</p>
+                <p className="mt-3">My account</p>
+              </div>
+            </div>
           </nav>
         </div>
-      </div>
-    </header>
+      </header>
+      <NavHd />
+    </div>
   );
 };
 

@@ -18,6 +18,16 @@ h6 {
   font-style: normal;
 }
 
+button:focus {
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .borderb {
   border-bottom: 1px solid #dfe3e8;
+}
+
+.border-1 {
+  border-style: 1px solid;
 }
