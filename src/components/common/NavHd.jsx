@@ -1,4 +1,5 @@
 import React from "react";
+import LanguageSwitch from "./LanguageSwitch";
 
 const Header = () => {
   return (
@@ -119,20 +120,7 @@ const Header = () => {
         <a href="#" className="text-lg text-white hover:text-primary mr-5">
           Consectetur
         </a>
-        <div className="dropdown inline-block relative">
-          <button className="text-lg text-white hover:text-primary mr-5">
-            <span className="mr-1">En</span>
-          </button>
-          <div className="dropdown-menu absolute hidden text-gray-700 pt-5 w-40">
-            <div class="text-secondary bg-white rounded ">
-              <p className="borderb p-3">Deutch</p>
-              <p className="borderb p-3">English</p>
-              <p className="borderb p-3">Françias</p>
-              <p className="borderb p-3">Magyar</p>
-            </div>
-          </div>
-        </div>
-
+        <LanguageSwitch />
         <div className="justify-end hidden lg:flex lg:justify-end mr-5">
           <a className="text-blue-800 bg-white rounded-full border border-third pt-1 pb-1 pl-3 pr-3 mr-1 hover:bg-primary">
             Chat{" "}

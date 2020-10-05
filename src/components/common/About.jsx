@@ -17,12 +17,17 @@ const About = () => {
         }
       `}
       render={({ parlament }) => (
-        <div id="about" className="continer flex flex-grow justify-center">
-          <div className="hidden md:block m-8">
-            <Img fixed={parlament.childImageSharp.fixed} />
+        <div id="about" className="continer flex flex-row justify-center">
+          <div className="hidden md:block ml-40 lg:ml-0 w-1/2 relative">
+            <div className="right-0 absolute">
+              <Img
+                className="p-5 m-5 max-w-md mx-auto "
+                fixed={parlament.childImageSharp.fixed}
+              />
+            </div>
           </div>
-          <div>
-            <p className="text-blue-800 m-8 max-w-md align-middle">
+          <div className="md:w-1/2 md:relative">
+            <p className="text-blue-800 md:max-w-xs lg:max-w-md md:absolute left-0 p-5 md:pt-10 lg:pt-20">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed urna
               arcu, tempus nec urna non, lacinia vehicula dolor. Integer
               pellentesque leo tristique nibh tristique posuere.
