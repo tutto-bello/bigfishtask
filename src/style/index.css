@@ -31,3 +31,7 @@ button:focus {
 .border-1 {
   border-style: 1px solid;
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
