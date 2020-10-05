@@ -5,7 +5,7 @@ const tailwindConfig = require("./tailwind.config.js");
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://baritztamas.netlify.app`
+    siteUrl: `https://bigfishtask.netlify.app`
   },
   plugins: [
     {
@@ -32,7 +32,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `THE BRIGHTEST DARK`,
+        name: `BigFischTask`,
         short_name: `starter`,
         start_url: `/`,
         background_color: `#2C7A7B`,

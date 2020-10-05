@@ -119,9 +119,19 @@ const Header = () => {
         <a href="#" className="text-lg text-white hover:text-primary mr-5">
           Consectetur
         </a>
-        <a href="#" className="text-lg text-white hover:text-primary mr-5">
-          En
-        </a>
+        <div className="dropdown inline-block relative">
+          <button className="text-lg text-white hover:text-primary mr-5">
+            <span className="mr-1">En</span>
+          </button>
+          <div className="dropdown-menu absolute hidden text-gray-700 pt-5 w-40">
+            <div class="text-secondary bg-white rounded ">
+              <p className="borderb p-3">Deutch</p>
+              <p className="borderb p-3">English</p>
+              <p className="borderb p-3">Françias</p>
+              <p className="borderb p-3">Magyar</p>
+            </div>
+          </div>
+        </div>
 
         <div className="justify-end hidden lg:flex lg:justify-end mr-5">
           <a className="text-blue-800 bg-white rounded-full border border-third pt-1 pb-1 pl-3 pr-3 mr-1 hover:bg-primary">
@@ -133,7 +143,7 @@ const Header = () => {
               className="inline ml-4"
             />
           </a>
-          <a className="text-blue-800 bg-white rounded-full border border-third pt-1 pb-1 pl-3 pr-3 ml-1 hover:bg-primary ">
+          <a className="text-blue-800 bg-white rounded-full border border-third pt-1 pb-1 pl-3 pr-3 ml-1 hover:bg-primary">
             Login{" "}
             <img
               src="/icons/loginb.svg"
@@ -142,6 +152,23 @@ const Header = () => {
               className="inline ml-4 hover:fill-white"
             />
           </a>
+          <div className="user dropdown relative hidden">
+            <button className="text-lg text-white hover:text-primary mr-5">
+              <img
+                src="/icons/user.png"
+                width="32"
+                alt="Pin"
+                className="inline mr-1"
+              />
+            </button>
+            <div className="dropdown-menu absolute hidden text-gray-700 pt-5 w-40">
+              <div class="text-secondary bg-white rounded ">
+                <p className="borderb p-3">Dashboard</p>
+                <p className="borderb p-3">My Account</p>
+                <p className="borderb p-3">Log out</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </header>

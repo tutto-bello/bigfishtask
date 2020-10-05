@@ -3,12 +3,17 @@
 @tailwind components;
 /*! purgecss end ignore */
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
 
 body {
   font-family: "Open Sans", sans-serif;
 }
 
-h1,
+h1 {
+  font-family: "Open sans", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
 h2,
 h3,
 h4,

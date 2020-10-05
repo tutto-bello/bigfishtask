@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, StaticQuery } from "gatsby";
 import BackgroundImage from "gatsby-background-image";
+import styled from "styled-components";
 
 const Hero = () => {
   return (
@@ -21,6 +22,9 @@ const Hero = () => {
           Tag="section"
           id="hero"
           fluid={hero.childImageSharp.fluid}
+          style={{
+            objectFit: "fill"
+          }}
         >
           <div className="container mx-auto h-full">
             <div className="flex flex-wrap text-left">

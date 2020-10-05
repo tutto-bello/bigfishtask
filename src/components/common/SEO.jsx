@@ -19,7 +19,7 @@ const SEO = ({ title, description }) => {
           htmlAttributes={{
             lang: language
           }}
-          title="THE BRIGHTEST DARK"
+          title="BigFishTask"
           titleTemplate={titleTemplate}
           meta={[
             {

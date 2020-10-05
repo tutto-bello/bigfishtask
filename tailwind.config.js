@@ -23,9 +23,6 @@ module.exports = {
         secondary: "#AB9A88",
         third: "#014593",
         backhover: "#014593"
-      },
-      width: {
-        card: "30%"
       }
     }
   },

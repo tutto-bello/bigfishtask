@@ -32,8 +32,7 @@ const HamburgerMenu = ({ show }) => {
   );
 };
 
-const Header = ({ background = false }) => {
-  const [show, setShow] = useState(false);
+const Header = ({ background = false, show, setShow }) => {
   const [hasBackground, setHasBackground] = useState(background);
 
   const toggleBackground = useCallback(() => {
