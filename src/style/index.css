@@ -29,6 +29,10 @@ button:focus {
   text-decoration: none;
 }
 
+nav {
+  background-color: white;
+}
+
 .borderb {
   border-bottom: 1px solid #dfe3e8;
 }

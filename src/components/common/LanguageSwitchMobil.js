@@ -12,23 +12,21 @@ const LanguageSwitch = () => {
     <IntlContextConsumer>
       {({ languages, language: currentLocale }) => (
         <div className="dropdown inline-block relative">
-          <button className="text-md text-white hover:text-primary mr-5">
-            <span className="mr-1 uppercase">
-              {currentLocale}{" "}
-              <img
-                src="/icons/arrow.svg"
-                width="10"
-                alt="Pin"
-                className="inline"
-              />
-            </span>
+          <button className="text-lg text-secondary hover:text-primary mr-5">
+            <img
+              src="/icons/pin.svg"
+              width="18"
+              alt="Pin"
+              className="inline ml-2"
+            />{" "}
+            <span className="mr-1">{names[currentLocale]}</span>
           </button>
           <div className="dropdown-menu absolute hidden text-gray-700 pt-5 w-40">
             <div
               className="absolute bg-white h-4 mt-4 rotate-45 rounded top-0 transform w-4"
               style={{ left: "10px" }}
             ></div>
-            <div class="text-secondary bg-white rounded mr-32 -ml-32">
+            <div class="text-secondary bg-white rounded -ml-5 mr-5">
               <>
                 <div className="pt-2 flex flex-col">
                   {languages.map(lang => (

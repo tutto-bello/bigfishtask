@@ -3,5 +3,10 @@
     "title": "BigFish | Task",
     "description": "Budapest Things to do - detailed info about things to do: sightseeing, events, restaurants, nightlife, shopping, pubs, bars, casinos and more...",
     "keywords": "Budapest, event, sigtseeing"
+  },
+  "hero": {
+    "title": "Willkommen in Budapest!",
+    "description": "Dinge zu tun - detaillierte Informationen über Dinge zu tun: Sightseeing, Veranstaltungen, Restaurants, Nachtleben, Shopping, Pubs, Bars, Casinos und mehr ...",
+    "button": "Buchung starten!"
   }
 }

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 import NavHd from "./NavHd";
 import Fade from "react-reveal/Fade";
+import LanguageSwitchMobil from "./LanguageSwitchMobil";
 
 const HamburgerMenu = ({ show }) => {
   return (
@@ -34,40 +35,29 @@ const HamburgerMenu = ({ show }) => {
 };
 
 const Header = ({ background = false, show, setShow }) => {
-  const [hasBackground, setHasBackground] = useState(background);
-
-  const toggleBackground = useCallback(() => {
-    if (!hasBackground && window.pageYOffset > 80) {
-      setHasBackground(true);
-    }
-  }, [hasBackground]);
+  const [usermobil, setUserMobil] = useState(false);
 
   const headerClass = clsx(
-    `fixed w-full z-10 top-0 lg:hidden ${hasBackground ? "bg-third" : ""}`,
+    `fixed w-full z-10 top-0 xl:hidden`,
+    show ? "bg-white" : "bg-navbg lg:bg-transparent",
     {
-      "h-full bg-white md:w-1/2": show
+      "h-full md:w-1/2": show
     }
   );
 
   const navClass = clsx(
-    "w-full h-full flex flex-col p-5 bg-white mt-6 overflow-scroll",
+    "w-full h-full flex flex-col p-5 mt-3 overflow-scroll border-t",
     {
       hidden: !show
     }
   );
-
-  useEffect(() => {
-    toggleBackground();
-
-    window.addEventListener("scroll", debounce(toggleBackground), 50);
-  }, [hasBackground, toggleBackground]);
 
   return (
     <div>
       <header className={headerClass}>
         <div className="flex-grow flex flex-col container h-full">
           <div className="w-full">
-            <div className="flex flex-row mt-3 justify-end">
+            <div className="flex flex-row mt-3 mb-3 justify-end">
               <button
                 type="button"
                 onClick={() => setShow(!show)}
@@ -75,20 +65,18 @@ const Header = ({ background = false, show, setShow }) => {
               >
                 <HamburgerMenu show={show} />
               </button>
-              <a href="#" className="mr-auto">
+              <a href="/" className="ml-5 mr-auto">
                 {show ? (
                   <img
                     src="/icons/bplogob.svg"
                     width="180"
                     alt="Budapest logo"
-                    className="ml-5"
                   />
                 ) : (
                   <img
                     src="/icons/bp-logo.svg"
                     width="180"
                     alt="Budapest logo"
-                    className="ml-5"
                   />
                 )}
               </a>
@@ -98,7 +86,7 @@ const Header = ({ background = false, show, setShow }) => {
                     src="/icons/chatb.svg"
                     width="18"
                     alt="Budapest logo"
-                    className="mt-3 mr-3 lg:hidden"
+                    className="mt-3 mr-3 hidden"
                   />
                 ) : (
                   <img
@@ -115,7 +103,7 @@ const Header = ({ background = false, show, setShow }) => {
                     src="/icons/loginb.svg"
                     width="18"
                     alt="Budapest logo"
-                    className="mt-3 mr-5 lg:hidden"
+                    className="mt-3 mr-5 hidden"
                   />
                 ) : (
                   <img
@@ -154,7 +142,7 @@ const Header = ({ background = false, show, setShow }) => {
           </div>
           <Fade left>
             <nav className={navClass}>
-              <div className="mt-10 pb-10 borderb">
+              <div className="pt-5 pb-10 borderb lg:hidden">
                 <button
                   type="submit"
                   className="bg-primary text-blue-800 w-full pt-3 pb-3 rounded-full uppercase font-bold m-auto"
@@ -162,70 +150,85 @@ const Header = ({ background = false, show, setShow }) => {
                   Start booking!
                 </button>
               </div>
-              <div className="text-left mt-10 pb-10 borderb">
+              {!usermobil ? (
+                <p>{""}</p>
+              ) : (
+                <div>
+                  <div class="flex items-center mt-10">
+                    <img
+                      class="w-10 h-10 rounded-full mr-4"
+                      src="/icons/user.png"
+                      alt="User"
+                    />
+                    <div class="text-sm">
+                      <p class="text-third text-xs">Logged in as</p>
+                      <p class="text-third text-lg">Barbara Palvin</p>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap text-secondary text-sm mt-5 pb-8 borderb">
+                    <div className="w-1/2">
+                      <p className="mt-3">Dashboard</p>
+                      <p className="mt-5">My account</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div className="text-left mt-8 pb-8 borderb">
                 <h2 className="text-blue-800 text-2xl font-bold">
                   Lorem ipsum
                 </h2>
-                <div class="flex flex-wrap text-secondary">
+                <div class="flex flex-wrap text-secondary text-sm">
                   <div className="w-1/2">
                     <p className="mt-3">Sed lacinia</p>
-                    <p className="mt-3">Praesent consequat</p>
-                    <p className="mt-3">Aenean lacinia viverra</p>
+                    <p className="mt-5">Praesent consequat</p>
+                    <p className="mt-5">Aenean lacinia viverra</p>
                   </div>
                   <div className="w-1/2">
                     <p className="mt-3">Praesent venenatis?</p>
-                    <p className="mt-3">Etiam finibus molestie</p>
-                    <p className="mt-3">Duis varius massa</p>
+                    <p className="mt-5">Etiam finibus molestie</p>
+                    <p className="mt-5">Duis varius massa</p>
                   </div>
                 </div>
               </div>
-              <div className="text-left mt-10 pb-10 borderb">
+              <div className="text-left mt-8 pb-8 borderb">
                 <h2 className="text-blue-800 text-2xl font-bold">Dolorsit</h2>
-                <div class="flex flex-wrap text-secondary">
+                <div class="flex flex-wrap text-secondary text-sm">
                   <div className="w-1/2">
                     <p className="mt-3">Adipiscing elit</p>
-                    <p className="mt-3">Cogito ergo sum</p>
+                    <p className="mt-5">Cogito ergo sum</p>
                   </div>
                 </div>
               </div>
-              <div className="text-left mt-10 pb-10 borderb">
+              <div className="text-left mt-8 pb-8 borderb">
                 <h2 className="text-blue-800 text-2xl font-bold">
                   Consectetur
                 </h2>
-                <div class="flex flex-wrap text-secondary">
+                <div class="flex flex-wrap text-secondary text-sm">
                   <div className="w-1/2">
                     <p className="mt-3">Grande punto</p>
                   </div>
                 </div>
               </div>
-              <div className="text-left mt-10 pb-10 borderb">
+              <div className="text-left mt-8 pb-8 borderb">
                 <div class="flex flex-wrap text-secondary">
-                  <div className="w-1/2">
+                  <div className="w-1/2 text-sm">
                     <p className="mt-3">Curabitur</p>
-                    <p className="mt-3">Ut ullamcorper</p>
-                    <p className="mt-3">Vestibulum</p>
-                    <p className="mt-3">Orci varius</p>
+                    <p className="mt-5">Ut ullamcorper</p>
+                    <p className="mt-5">Vestibulum</p>
+                    <p className="mt-5">Orci varius</p>
                   </div>
-                  <div className="w-1/2">
+                  <div className="w-1/2 text-sm">
                     <p className="mt-3">Donec vel eros</p>
-                    <p className="mt-3">Curabitur</p>
-                    <p className="mt-3">Maecenas</p>
+                    <p className="mt-5">Curabitur</p>
+                    <p className="mt-5">Maecenas</p>
                   </div>
                 </div>
               </div>
-              <div className="text-center mt-10 pb-10 borderb">
-                <p className="text-secondary">
-                  <img
-                    src="/icons/pin.svg"
-                    width="18"
-                    alt="Pin"
-                    className="inline ml-2"
-                  />{" "}
-                  English
-                </p>
+              <div className="text-center mt-5 pb-5 borderb">
+                <LanguageSwitchMobil />
               </div>
-              <div className="text-center mt-10 pb-10">
-                <a className="text-blue-800 rounded-full border border-third p-4 mr-1 hover:bg-primary">
+              <div className="text-center mt-12 pb-10">
+                <a className="text-blue-800 rounded-full border border-third pt-2 pb-2 pl-3 pr-3 mr-1 hover:bg-primary">
                   Chat{" "}
                   <img
                     src="/icons/chatb.svg"
@@ -234,7 +237,10 @@ const Header = ({ background = false, show, setShow }) => {
                     className="inline ml-4"
                   />
                 </a>
-                <a className="text-blue-800 rounded-full border border-third p-4 ml-1 hover:bg-primary ">
+                <a
+                  onClick={() => setUserMobil(true)}
+                  className="text-blue-800 rounded-full border border-third pt-2 pb-2 pl-3 pr-3 ml-1 hover:bg-primary "
+                >
                   Login{" "}
                   <img
                     src="/icons/loginb.svg"
@@ -243,23 +249,6 @@ const Header = ({ background = false, show, setShow }) => {
                     className="inline ml-4 hover:fill-white"
                   />
                 </a>
-              </div>
-              <div class="flex items-center mt-10">
-                <img
-                  class="w-10 h-10 rounded-full mr-4"
-                  src="/icons/user.png"
-                  alt="User"
-                />
-                <div class="text-sm">
-                  <p class="text-third text-xs">Logged in as</p>
-                  <p class="text-third text-lg">Barbara Palvin</p>
-                </div>
-              </div>
-              <div class="flex flex-wrap text-secondary mt-5">
-                <div className="w-1/2">
-                  <p className="mt-3">Dashboard</p>
-                  <p className="mt-3">My account</p>
-                </div>
               </div>
             </nav>
           </Fade>
