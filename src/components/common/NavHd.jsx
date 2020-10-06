@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import LanguageSwitch from "./LanguageSwitch";
 
 const Header = () => {
+  const [user, setUser] = useState(false);
   return (
     <header className="hidden lg:block fixed w-full z-10 top-0 bg-transparent">
       <div className="flex-grow flex container justify-end h-full mt-3">
-        <a className="mr-auto">
+        <a href="#" className="mr-auto">
           <img
             src="/icons/bp-logo.svg"
             width="180"
@@ -18,6 +19,10 @@ const Header = () => {
             <span className="mr-1">Lorem ipsum</span>
           </button>
           <div className="dropdown-menu absolute hidden text-gray-700 pt-5 -ml-32">
+            <div
+              className="absolute bg-white h-4 mt-4 rotate-45 rounded top-0 transform w-4"
+              style={{ left: "175px" }}
+            ></div>
             <div class="flex text-secondary bg-white rounded p-5">
               <div className="w-1/2">
                 <div className="flex whitespace-no-wrap borderb pr-16 pb-5">
@@ -131,32 +136,48 @@ const Header = () => {
               className="inline ml-4"
             />
           </a>
-          <a className="text-blue-800 bg-white rounded-full border border-third pt-1 pb-1 pl-3 pr-3 ml-1 hover:bg-primary">
-            Login{" "}
-            <img
-              src="/icons/loginb.svg"
-              width="18"
-              alt="Pin"
-              className="inline ml-4 hover:fill-white"
-            />
-          </a>
-          <div className="user dropdown relative hidden">
-            <button className="text-lg text-white hover:text-primary mr-5">
+          {!user ? (
+            <a
+              onClick={() => setUser(true)}
+              className="text-blue-800 bg-white rounded-full border border-third pt-1 pb-1 pl-3 pr-3 ml-1 hover:bg-primary"
+            >
+              Login{" "}
               <img
-                src="/icons/user.png"
-                width="32"
+                src="/icons/loginb.svg"
+                width="18"
                 alt="Pin"
-                className="inline mr-1"
+                className="inline ml-4 hover:fill-white"
               />
-            </button>
-            <div className="dropdown-menu absolute hidden text-gray-700 pt-5 w-40">
-              <div class="text-secondary bg-white rounded ">
-                <p className="borderb p-3">Dashboard</p>
-                <p className="borderb p-3">My Account</p>
-                <p className="borderb p-3">Log out</p>
+            </a>
+          ) : (
+            <div className="user dropdown relative">
+              <button className="text-lg text-white hover:text-primary mr-5">
+                <img
+                  src="/icons/user.png"
+                  width="32"
+                  alt="Pin"
+                  className="inline mr-1"
+                />
+              </button>
+              <div className="dropdown-menu absolute hidden text-gray-700 pt-5 w-40">
+                <div
+                  className="absolute bg-white h-4 mt-4 rotate-45 rounded top-0 transform w-4"
+                  style={{ left: "15px" }}
+                ></div>
+                <div class="text-secondary bg-white rounded ">
+                  <p className="borderb p-3">Dashboard</p>
+                  <p className="borderb p-3">My Account</p>
+                  <button
+                    onClick={() => setUser(false)}
+                    className="borderb p-3"
+                    type="button"
+                  >
+                    Log out
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </header>

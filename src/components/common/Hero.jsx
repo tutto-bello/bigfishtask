@@ -28,7 +28,7 @@ const Hero = () => {
                 <h1 className="text-5xl font-bold text-primary leading-none">
                   Welcome to Budapest!
                 </h1>
-                <p className="text-white font-bold text-2xl pt-8 max-w-2xl">
+                <p className="text-white font-bold text-md pt-8 max-w-2xl">
                   Budapest Things to do - detailed info about things to do:
                   sightseeing, events, restaurants, nightlife, shopping, pubs,
                   bars, casinos and more...
@@ -36,7 +36,7 @@ const Hero = () => {
                 <div className="mt-10 max-w-xs">
                   <button
                     type="submit"
-                    className="bg-primary text-blue-800 w-full pt-4 pb-4 rounded-full uppercase font-bold m-auto"
+                    className="bg-primary hover:bg-white text-blue-800 w-full pt-3 pb-3 rounded-full uppercase font-bold m-auto"
                   >
                     Start booking!
                   </button>
