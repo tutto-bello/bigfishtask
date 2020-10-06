@@ -61,7 +61,7 @@ const Header = ({ background = false, show, setShow }) => {
               <button
                 type="button"
                 onClick={() => setShow(!show)}
-                className="w-5 ml-5 outline-none"
+                className="w-5 ml-5 mr-2 outline-none"
               >
                 <HamburgerMenu show={show} />
               </button>
