@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { debounce } from "lodash";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import NavHd from "./NavHd";
@@ -34,12 +33,12 @@ const HamburgerMenu = ({ show }) => {
   );
 };
 
-const Header = ({ background = false, show, setShow }) => {
+const Header = ({ show, setShow }) => {
   const [usermobil, setUserMobil] = useState(false);
 
   const headerClass = clsx(
     `fixed w-full z-10 top-0 xl:hidden`,
-    show ? "bg-white" : "bg-navbg lg:bg-transparent",
+    show ? "bg-white" : "bg-navbg md:bg-transparent",
     {
       "h-full md:w-1/2": show
     }

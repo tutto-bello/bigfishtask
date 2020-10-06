@@ -25,19 +25,19 @@ const Hero = () => {
           id="hero"
           fluid={hero.childImageSharp.fluid}
         >
-          <div className="container mx-auto h-full mt-12 lg:mt-0 md:pt-10 xl:mt-12">
+          <div className="container mx-auto h-full mt-12 md:mt-0 md:pt-10 xl:mt-12">
             <div className="flex flex-wrap text-left">
-              <div className="w-full p-5 mt-8 mb-10 md:text-left justify-center">
-                <h1 className="text-5xl font-bold text-primary leading-none xl:mt-10">
+              <div className="w-full p-4 md:p-8 mt-8 mb-10 md:text-left justify-center">
+                <h1 className="text-5xl font-bold text-primary leading-none xl:mt-5">
                   {intl.formatMessage({ id: "hero.title" })}
                 </h1>
-                <p className="text-white font-bold text-md pt-10 max-w-xs md:max-w-lg xl:mt-10">
+                <p className="text-white font-bold text-md pt-10 max-w-xs md:max-w-lg xl:mt-8">
                   {intl.formatMessage({ id: "hero.description" })}
                 </p>
                 <div className="mt-12 md:max-w-xs xl:w-56 md:mb-24">
                   <button
                     type="submit"
-                    className="bg-primary hover:bg-white text-blue-800 w-full  pt-3 pb-3 rounded-full uppercase font-bold m-auto xl:mt-6 xl:mb-20"
+                    className="bg-primary hover:bg-white text-blue-800 w-full  pt-3 pb-3 rounded-full uppercase font-bold m-auto xl:mt-4 xl:mb-20"
                   >
                     {intl.formatMessage({ id: "hero.button" })}
                   </button>

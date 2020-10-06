@@ -1,73 +1,30 @@
 import React from "react";
-import { useIntl, IntlContextConsumer } from "gatsby-plugin-intl";
-import PropTypes from "prop-types";
 import Helmet from "react-helmet";
+import { injectIntl } from "gatsby-plugin-intl";
+import imageURL from "../../../assets/images/hero.jpg";
 
-const SEO = ({ title, description }) => {
-  const intl = useIntl();
-
-  const titleTemplate = title
-    ? `${title} | %s`
-    : intl.formatMessage({ id: "seo.title" });
+const SEO = ({ intl }) => {
+  const description = intl.formatMessage({ id: "seo.description" });
   const keywords = intl.formatMessage({ id: "seo.keywords" });
-  const defaultDescription = intl.formatMessage({ id: "seo.description" });
-
+  const title = intl.formatMessage({ id: "seo.title" });
   return (
-    <IntlContextConsumer>
-      {({ language }) => (
-        <Helmet
-          htmlAttributes={{
-            lang: language
-          }}
-          title="BigFishTask"
-          titleTemplate={titleTemplate}
-          meta={[
-            {
-              name: `description`,
-              content: description || defaultDescription
-            },
-            {
-              name: `keywords`,
-              content: keywords
-            },
-            {
-              property: `og:title`,
-              content: title
-            },
-            {
-              property: `og:description`,
-              content: description
-            },
-            {
-              property: `og:type`,
-              content: `website`
-            },
-            {
-              name: `twitter:card`,
-              content: `summary`
-            },
-            {
-              name: `twitter:creator`,
-              content: "author"
-            },
-            {
-              name: `twitter:title`,
-              content: title
-            },
-            {
-              name: `twitter:description`,
-              content: description
-            }
-          ]}
-        />
-      )}
-    </IntlContextConsumer>
+    <Helmet title={title}>
+      <html lang="sk" />
+      <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@gastrobooks" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={imageURL} />
+
+      <meta property="og:title" content={title} />
+      <meta property="og:image" content={imageURL} />
+      <meta property="og:description" content={description} />
+      <meta property="og:site_name" content={title} />
+    </Helmet>
   );
 };
 
-SEO.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
-};
-
-export default SEO;
+export default injectIntl(SEO);
